@@ -6,7 +6,7 @@ import { exit } from 'node:process';
 export const connectDB = async () => {
     try {
         const {connection} = await mongoose.connect(process.env.DATABASE_URL);
-        const url = `${connection.host} : ${connection.port}`;
+        const url = `${connection.host} : ${connection.port}`; // Extraer el host y el puerto de connection
         console.log(Colors.cyan.bold(`MongoDB conectado en ${url}`));
     } catch (error) {
         // console.log(error.message);
