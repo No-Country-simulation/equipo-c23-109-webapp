@@ -1,21 +1,50 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import { useState } from "react"
-import { Header } from '../layouts/Header'
+import { useState } from "react"
+//import { Header } from '../layouts/Header'
 import image1 from '../../public/images/imagen1.jpg'
 import image2 from '../../public/images/imagen2.png'
 import image3 from '../../public/images/imagen3.png'
 import image4 from '../../public/images/imgen4.png'
+import openMenu from '../../public/images/abrir-menu.png'
 import { Button } from 'react-bootstrap'
 
 
 export function Home() {
     // // const [count, setCount] = useState(0)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    function handleToggleMenu() {
+        setIsMenuOpen(!isMenuOpen);
+    }
 
     return (
         <>
             <header className=' bg-blue-600 text-white'>
-                <Header />
+                <div className='flex justify-between items-center p-4 max-w-[1460px] m-auto'>
+                    <h1 className='text-3xl p-4 '>PrestaYa</h1>
+                    <div className='relative'>
+                        <nav className='hidden min-[610px]:flex justify-between items-center p-4 gap-4 '>
+                            <a className='hover:text-gray-300' href="#home">Inicio</a>
+                            <a className='hover:text-green-400' href="#link">Solicitar Préstamo</a>
+                            <a className='hover:text-green-400' href="#link">Invertir</a>
+                            <a className='hover:text-gray-300' href="#link">Iniciar Sesion</a>
+                            <a className='hover:text-gray-300' href="#link">Registrarse</a>
+                        </nav>
+                        <button onClick={handleToggleMenu} className=''>
+                            <img src={openMenu} alt="" width={50} height={50} className='fixed min-[610px]:hidden right-0 top-0 z-10 mr-12 mt-12 hover:cursor-pointer p-2 border-2 border-blue-700 rounded-md bg-blue-500' />
+                        </button>
+                        {isMenuOpen && (
+                            <nav className='fixed left-0 top-0 w-[100vw] bg-sky-500 h-[100vh] flex flex-col justify-center text-4xl gap-12' >
+                                <a className='hover:text-gray-300' href="#home">Inicio</a>
+                                <a className='hover:text-green-400' href="#link">Solicitar Préstamo</a>
+                                <a className='hover:text-green-400' href="#link">Invertir</a>
+                                <a className='hover:text-gray-300' href="#link">Iniciar Sesion</a>
+                                <a className='hover:text-gray-300' href="#link">Registrarse</a>
+                            </nav>
+                        )}
+                    </div>
+                </div>
             </header>
             <main className='flex flex-col justify-center items-center p-[4_0] gap-[3rem] w-full'>
                 <div className='flex md:flex-row flex-col-reverse justify-between items-center gap-6 p-4'>
