@@ -19,7 +19,7 @@ export type SolicitudType = Document & {
 // schema - modelo para mongoose
 const SolicitudSchema: Schema = new Schema({
     nombre: {
-        type: String, //tipo de dato de la columna en la base de datos
+        type: String, 
         required: true,
         trim: true
     },
