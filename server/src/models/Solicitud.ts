@@ -1,7 +1,7 @@
 import mongoose, {Schema, Document} from "mongoose";
 
 // type de typescript
-// "Document" herera todas las funciones de document
+// "Document" hereda todas las funciones de document
 export type SolicitudType = Document & {
     nombre: string;
     apellido: string;
@@ -72,7 +72,7 @@ const SolicitudSchema: Schema = new Schema({
         required: true,
         trim: true
     }
-});
+}, {collection: 'solicitud'});  // Nombre de la colección
 
 // Agregar un modelo a la instancia de mongoose
 const Solicitud = mongoose.model<SolicitudType>('Solicitud', SolicitudSchema);
