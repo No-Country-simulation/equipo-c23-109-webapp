@@ -5,7 +5,7 @@ export class SolicitudController {
 
     static crearSolicitud = async (req: Request, res: Response) => {
 
-        // Creará una instancia en la variable solicitud
+        // Creará una instancia del request que llega en la variable solicitud
         const solicitud = new Solicitud(req.body);
 
         try{
@@ -20,11 +20,29 @@ export class SolicitudController {
 
     static obtenerSolicitudes = async (req: Request, res: Response) => {
        try{
-        const solicitud = await Solicitud.find({});
-        res.json(solicitud);
+        const solicitudes = await Solicitud.find({});
+        res.json(solicitudes);
        }catch(errors){
         console.log(errors);
        }
+    }
+
+    static obtenerSolicitudPorId = async (req: Request, res: Response) => {
+        const { id } = req.params;  // Destructuring para obtener el id
+
+        try{
+            const solicitud = await Solicitud.findById(id);
+
+            // Validación por si no encuentra ninguna solicitud
+            if(!solicitud){
+                const error = new Error('Solicitud no encontrada');
+                res.status(404).json({ error: error.message });
+                return;
+            }
+            res.json(solicitud);
+        }catch(errors){
+            console.log(errors);
+        }
     }
 
 }
