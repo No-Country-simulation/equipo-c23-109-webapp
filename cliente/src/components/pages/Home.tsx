@@ -23,7 +23,7 @@ export function Home() {
             <header className=' bg-blue-600 text-white'>
                 <div className='flex justify-between items-center p-4 max-w-[1460px] m-auto'>
                     <h1 className='text-3xl p-4 '>PrestaYa</h1>
-                    <div className='relative'>
+                    <div className='relative flex justify-between items-center'>
                         <nav className='hidden min-[610px]:flex justify-between items-center p-4 gap-4 '>
                             <a className='hover:text-gray-300' href="#home">Inicio</a>
                             <a className='hover:text-green-400' href="#link">Solicitar Préstamo</a>
