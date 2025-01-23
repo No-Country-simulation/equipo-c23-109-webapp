@@ -45,8 +45,15 @@ router.get('/:id', param('id').isMongoId().withMessage('ID no válido'),
         handleInputErrors, SolicitudController.obtenerSolicitudPorId
     );
 
+// Actualizar una solicitud
 router.put('/:id', solicitudValidators, param('id').isMongoId().withMessage('ID no válido'),
         handleInputErrors, SolicitudController.actualizarSolicitud
     );
+
+// Eliminar una solicitud
+router.delete('/:id', param('id').isMongoId().withMessage('ID no válido'), 
+        handleInputErrors, SolicitudController.eliminarSolicitud
+);
+
 
 export default router;

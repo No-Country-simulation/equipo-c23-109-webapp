@@ -3,6 +3,7 @@ import Solicitud from "../models/Solicitud";
 
 export class SolicitudController {
 
+    // Método para crear una solicitud
     static crearSolicitud = async (req: Request, res: Response) => {
 
         // Creará una instancia del request que llega en la variable solicitud
@@ -18,6 +19,7 @@ export class SolicitudController {
 
     }
 
+    // Método para obtener todas las solicitudes 
     static obtenerSolicitudes = async (req: Request, res: Response) => {
        try{
         const solicitudes = await Solicitud.find({});
@@ -27,6 +29,7 @@ export class SolicitudController {
        }
     }
 
+    // Método para obtener una solicitud por su ID
     static obtenerSolicitudPorId = async (req: Request, res: Response) => {
         const { id } = req.params;  // Destructuring para obtener el id
 
@@ -45,6 +48,7 @@ export class SolicitudController {
         }
     }
 
+    // Método para actualizar una solicitud
     static actualizarSolicitud = async (req: Request, res: Response) => {
         const { id } = req.params;
 
@@ -53,7 +57,7 @@ export class SolicitudController {
             const solicitud = await Solicitud.findByIdAndUpdate(id, req.body);
 
             if(!solicitud){
-                const error = new Error('Error al actualizar la solicitud');
+                const error = new Error('Solicitud no encontrada');
                 res.status(404).json({ error: error.message });
                 return;
             }
@@ -65,4 +69,25 @@ export class SolicitudController {
         }
     }
 
+    // Método para eliminar una solicitud
+    static eliminarSolicitud = async (req: Request, res: Response) => {
+        const { id } = req.params;
+
+        try{
+            // Encontrar el id de la solicitud
+            const solicitud = await Solicitud.findById(id);
+
+            // Se valida por si no encuentra el id de la solicitud
+            if(!solicitud){
+                const error = new Error('Solicitud no encontrada');
+                res.status(404).json({ error: error.message });
+            }
+            // se elimina la solicitud
+            await solicitud.deleteOne();
+            res.send('Solicitud eliminada');
+
+        }catch(error){
+            console.log(error);
+        }
+    }
 }
