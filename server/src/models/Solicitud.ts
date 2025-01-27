@@ -1,19 +1,30 @@
 import mongoose, {Schema, Document} from "mongoose";
 
-// type de typescript
+const solicitudStatus = {
+    PENDIENTE: "pendiente",
+    APROBADA: "aprobada",
+    RECHAZADA: "rechazada",
+    FINANCIADA: "financiada",
+    NO_FINANCIADA:"noFinanciada"
+} as const
+
+// el type SolicitudStatus solo aceptará los valores del objeto solicitudStatus
+export type SolicitudStatus = typeof solicitudStatus[keyof typeof solicitudStatus];
+
 // "Document" hereda todas las funciones de document
-export type SolicitudType = Document & {
-    nombre: string;
-    apellido: string;
-    fechaNacimiento: Date;
-    telefono: string;
-    montoSolicitado: number;
-    plazoPrestamo: number;
-    propositoPrestamo: string;
-    ingresosMensuales: number;
-    gastosMensuales: number;
-    ocupacion: string;
-    tiempoEmpleo: string;
+export interface ISolicitud  extends Document  {
+    nombre: string
+    apellido: string
+    fechaNacimiento: Date
+    telefono: string
+    montoSolicitado: number
+    plazoPrestamo: number
+    propositoPrestamo: string
+    ingresosMensuales: number
+    gastosMensuales: number
+    ocupacion: string
+    tiempoEmpleo: string
+    status: SolicitudStatus
 }
 
 // schema - modelo para mongoose
@@ -71,10 +82,15 @@ const SolicitudSchema: Schema = new Schema({
         type: String,
         required: true,
         trim: true
+    },
+    status: {
+        type: String,
+        emun: Object.values(solicitudStatus),
+        default: solicitudStatus.PENDIENTE
     }
-}, {collection: 'solicitud'});  // Nombre de la colección
+}, {collection: 'solicitud', timestamps: true }); 
 
 // Agregar un modelo a la instancia de mongoose
-const Solicitud = mongoose.model<SolicitudType>('Solicitud', SolicitudSchema);
+const Solicitud = mongoose.model<ISolicitud>('Solicitud', SolicitudSchema);
 // Exportarlo para utilizarlo en los controladores
 export default Solicitud;
