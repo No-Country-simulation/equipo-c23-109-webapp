@@ -1,5 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
+import { corsConfig } from './config/cors'
 import { connectDB } from './config/db'
 import solicitudRoutes from './routes/solicitudRoutes';
 
@@ -9,6 +11,9 @@ connectDB();
 
 // Instancia del servidor
 const app = express()
+
+// Permitir las conexiones autorizadas del frontend
+app.use(cors(corsConfig));
 
 // Habilitar la lectura del formato json para que pueda leer los valores que le envíe desde el body
 app.use(express.json());
