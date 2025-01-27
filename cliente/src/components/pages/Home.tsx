@@ -26,7 +26,7 @@ export function Home() {
                     <div className='relative flex justify-between items-center'>
                         <nav className='hidden min-[610px]:flex justify-between items-center p-4 gap-4 '>
                             <a className='hover:text-gray-300' href="#home">Inicio</a>
-                            <a className='hover:text-green-400' href="#link">Solicitar Préstamo</a>
+                            <a className='hover:text-green-400' href="./solicitud">Solicitar Préstamo</a>
                             <a className='hover:text-green-400' href="#link">Invertir</a>
                             <a className='hover:text-gray-300' href="#link">Iniciar Sesion</a>
                             <a className='hover:text-gray-300' href="#link">Registrarse</a>
