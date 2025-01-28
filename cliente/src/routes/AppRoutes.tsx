@@ -3,6 +3,7 @@ import { Login }  from '../components/pages/Login.tsx'
 import { Register }  from '../components/pages/Register.tsx'
 import { Dashboard }  from '../components/pages/Dashboard.tsx'
 import { Home } from '../components/pages/Home.tsx'
+import SolicitudForm from '../components/pages/SolicitudForm.tsx'
 
 export const AppRoutes = () => (
     <Router>
@@ -10,6 +11,7 @@ export const AppRoutes = () => (
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/solicitud" element={<SolicitudForm />} />
             <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
     </Router>

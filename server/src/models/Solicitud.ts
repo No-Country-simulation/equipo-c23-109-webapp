@@ -26,7 +26,7 @@ export interface ISolicitud  extends Document  {
     tiempoEmpleo: string
     status: SolicitudStatus
 }
-
+ 
 // schema - modelo para mongoose
 const SolicitudSchema: Schema = new Schema({
     nombre: {
