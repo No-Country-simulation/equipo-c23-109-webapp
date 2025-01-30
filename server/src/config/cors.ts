@@ -1,5 +1,6 @@
 import { CorsOptions } from 'cors';
 
+// Configuración del CORS
 export const corsConfig : CorsOptions = {
     // Origin es de donde llega la petición y callback permite la conexión
     origin: function(origin, callback) {

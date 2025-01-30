@@ -5,7 +5,7 @@ import { handleInputErrors } from "../middleware/validacion";
 
 const router = Router();
 
-const authValidators = [
+const createAccountValidators = [
     body('name').notEmpty().withMessage('El nombre no puede ir vacio'),
     body('password').isLength({ min: 8 }).withMessage('El password tiene que tener minimo 8 caracteres'),
     body('email').isEmail().withMessage('Email no valido'),
@@ -19,6 +19,11 @@ const authValidators = [
     })
 ]
 
-router.post('/create-account', authValidators, handleInputErrors, AuthController.crearCuenta);
+const confirmAccountValidator = [
+    body('token').notEmpty().withMessage('El token no puede ir vacio')
+]
+
+router.post('/create-account', createAccountValidators, handleInputErrors, AuthController.crearCuenta);
+router.post('/confirm-account', confirmAccountValidator, handleInputErrors, AuthController.confirmarCuenta)
 
 export default router;
